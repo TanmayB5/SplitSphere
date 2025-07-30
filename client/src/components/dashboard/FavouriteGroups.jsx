@@ -42,10 +42,10 @@ const FavouriteGroups = () => {
         const getUserFavGroups = async () => {
   setLoading(true);
   const response_group = await getUserGroupsService(profile);
-  if (response_group && response_group.data && Array.isArray(response_group.data.groups)) {
+  if (response_group && response_group.data && response_group.data.groups && Array.isArray(response_group.data.groups)) {
     setGroup(response_group.data.groups);
   } else {
-    setGroup([]); // or handle error state as needed
+    setGroup([]);
   }
   setLoading(false);
 }

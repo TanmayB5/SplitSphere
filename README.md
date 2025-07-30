@@ -1,29 +1,27 @@
 
 
 <div align="center">
-  <a href="https://splitapp-rnjo.onrender.com/">
-    <img src="https://github.com/tuzup/SplitApp/blob/master/client/public/static/logo.png?raw=true" alt="Logo" width="80" height="80">
+  <a href="https://github.com/TanmayB5/SplitSphere">
+    <img src="Screenshots/dashboard-main-transparent.png" alt="Logo" width="120" height="80">
   </a>
-
-  <h2 align="center">SplitApp</h2>
-
+  <h2 align="center">SplitSphere</h2>
   <p align="center">
-    Build with the MERN stack (MongoDB, Express, React and NodeJS).
+    A modern group expense splitting app built with the MERN stack (MongoDB, Express, React, Node.js).
     <br />
-    <a href="https://github.com/tuzup/SplitApp/"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/TanmayB5/SplitSphere"><strong>Explore the code »</strong></a>
     <br />
     <br />
-    <a href="https://splitapp-rnjo.onrender.com/">View Demo</a>
+    <a href="http://localhost:3000">View Local Demo</a>
     ·
-    <a href="https://github.com/tuzup/SplitApp/issues">Report Bug</a>
+    <a href="https://github.com/TanmayB5/SplitSphere/issues">Report Bug</a>
     ·
-    <a href="https://github.com/tuzup/SplitApp/issues">Request Feature</a>
+    <a href="https://github.com/TanmayB5/SplitSphere/issues">Request Feature</a>
   </p>
 </div>
 
-![SplitApp](https://raw.githubusercontent.com/tuzup/SplitApp/master/Screenshots/dashboard-main-transparent.png)
+![SplitSphere](Screenshots/dashboard-main-transparent.png)
 
-## MERN Stack Group Expense Splitting Application
+## Group Expense Splitting Application
 
   * [Introduction](#introduction)
   * [Key Features](#key-features)
@@ -36,93 +34,103 @@
 
 
 ## Introduction
-This is a side project I've been working on. A full stack expense spliting app - splitwise clone made using the MERN stack (MongoDB, Express, React & Nodejs), specially designed to split group expense between friends. With this application, you can add your expense details and get an whole expense analytics feature - Group Balance, Monthly amount spend, Catagory wise expense spending graph etc... Jump right off the [Live App](https://splitapp-rnjo.onrender.com/) and start adding your expenses or download the entire [Source code](https://github.com/tuzup/SplitApp/) and run it on your server. This project is something I've been working on in my free time so I cannot be sure that everything will work out correctly. But I'll appreciate you if can report any issue.
+SplitSphere is a full-stack expense splitting app (Splitwise clone) made using the MERN stack (MongoDB, Express, React & Node.js), designed to help groups of friends manage and settle shared expenses. The app provides analytics such as group balances, monthly spending, and category-wise breakdowns.
 
-![Features](https://raw.githubusercontent.com/tuzup/SplitApp/master/Screenshots/combined-screenshot.png)
+- This repository contains both the backend (Node.js/Express) and frontend (React) code.
+- You can run the app locally or deploy it to your preferred platform.
+
+![Features](Screenshots/combined-screenshot.png)
 
 ## Key Features
-- Create user groups and track group expense 
-- Keep track of shared expenses and settle your corresponding balances in a convenient and personalized way. 
-- Get Analytical graphs to understand your expenditure trend 
-- Multiple user registration.
-- Authentication using JSON web token (JWT) 
+- Create and manage user groups
+- Add and track shared expenses
+- Settle up balances between group members
+- Visual analytics: group balance, monthly spend, category-wise graphs
+- User authentication (JWT-based)
+- Responsive UI with Material UI
+- Secure password storage (bcryptjs)
 
+## Technologies Used
 
-## Technologies used
-This project was created using the following technologies.
+### Frontend
+- React.js
+- Redux
+- Axios
+- Material UI
+- Chart.js & react-chartjs-2
+- Gravatar
 
-#### Frontend
+### Backend
+- Node.js & Express
+- Mongoose (MongoDB ODM)
+- JWT (Authentication)
+- bcryptjs (Password hashing)
+- Winston, Morgan (Logging)
 
-- React JS
-- Redux (for managing and centralizing application state)
-- Axios (for making api calls)
-- Material UI (for User Interface)
-- Chart.js (To display various analytics graphs)
-- React-chartjs-2  
-- Gravitar (for user profile picture)
+### Database
+- MongoDB (Atlas or local)
 
-#### Backend
+## Getting Started (Local Setup)
 
-- Express
-- Mongoose
-- JWT (For authentication)
-- bcryptjs (for data encryption)
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/TanmayB5/SplitSphere.git
+   cd SplitSphere
+   ```
 
-#### Database
-MongoDB (MongoDB Atlas)
+2. **Install backend dependencies:**
+   ```sh
+   npm install
+   ```
 
-## Configuration and Setup
-In order to run this project locally, simply fork and clone the repository or download as zip and unzip on your machine. 
-- Open the project in your prefered code editor.
-- Go to terminal -> New terminal (If you are using VS code)
-- Split your terminal into two (run the client on one terminal and the server on the other terminal)
+3. **Configure environment variables:**
+   - Create a `.env` file in the root directory:
+     ```env
+     PORT=3001
+     MONGODB_URI=your_mongodb_connection_string
+     ACCESS_TOKEN_SECRET=your_secret_key
+     ```
+   - To generate a random secret key:
+     ```sh
+     node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
+     ```
 
-In the first terminal - Setup Clinet 
+4. **Start the backend server:**
+   ```sh
+   npm start
+   # The backend will run on http://localhost:3001
+   ```
 
-```
-$ cd client
-$ npm install (to install client-side dependencies)
-$ npm start (to start the client)
-```
+5. **Install frontend dependencies and start the client:**
+   ```sh
+   cd client
+   npm install
+   npm start
+   # The frontend will run on http://localhost:3000
+   ```
 
-For setting up backend (root directory) 
-- create a .env file in the root of your directory.
-- Supply the following credentials
+- The React app proxies API requests to the backend at port 3001 (see `client/package.json` for the proxy setting).
+- Make sure both servers are running for full functionality.
 
-```
-PORT=3001
-MONGODB_URI=
-ACCESS_TOKEN_SECRET=
+## Project Structure
+- `client/` - React frontend
+- `routes/`, `model/`, `helper/`, `components/` - Node.js backend
+- `.env` - Environment variables for backend
+- `Procfile` - For deployment (Heroku etc.)
 
-```
+## Deployment
+- The app can be deployed on any platform supporting Node.js (Heroku, Render, etc.).
+- For production, build the React app (`npm run build` in `client/`) and serve it from the backend.
 
-Please follow [This tutorial](https://dev.to/dalalrohit/how-to-connect-to-mongodb-atlas-using-node-js-k9i) to create your mongoDB connection url, which you'll use as your MONGODB_URI
-
-Provide some random key in ACCESS_TOKEN_SECRET or you could generate one using node enter the below command in the terminal to genrate a random secret key 
-
-```
-node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
-```
-
-In the second terminal (*in the project root directory (back-end))
-
-```
-$ npm install (to install server-side dependencies)
-& npm start (to start the server)
-```
-
-## Comment
-I intend to keep adding more features to this application, so if you like it, please give it a star, that will encourage me to 
-to keep improving the project.
+## Notes
+- If you see proxy errors in the React app, make sure your backend server is running on port 3001.
+- For any issues or feature requests, please use the GitHub Issues page.
+- Contributions are welcome! Feel free to fork and submit pull requests.
 
 ## License
 
 This project is MIT licensed.
 
-Copyright 2022 Sunny G Vaikathuparampan
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+Copyright 2022-2025 TanmayB5
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

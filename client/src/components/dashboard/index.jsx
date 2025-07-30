@@ -27,17 +27,22 @@ export default function Dashboard() {
     
 
     useEffect(() => {
+        // Defensive: check for undefined groups
         const getUserDetails = async () => {
             setLoading(true);
             const userIdJson = {
                 user: profile.emailId
             }
             const response_expense = await getUserExpenseService(userIdJson, setAlert, setAlertMessage)
-            setUserExp(response_expense.data);
+            setUserExp(response_expense?.data);
             const response_group = await getUserGroupsService(profile)
-            if (response_group.data.groups.length == 0)
-                setNewUser(true)
-            setLoading(false)
+            if (response_group && response_group.data && Array.isArray(response_group.data.groups)) {
+                if (response_group.data.groups.length === 0) setNewUser(true);
+            } else {
+                setAlert(true);
+                setAlertMessage("Could not load groups. Please check your backend/API connection.");
+            }
+            setLoading(false);
 
         }
         getUserDetails();
